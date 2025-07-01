@@ -1,11 +1,5 @@
-@extends('layout')
-
-@section('title')
-    Jobs available
-@endsection
-
-@section('content')
-
+<x-layout>
+    <x-slot name="title">Jobs available</x-slot>
     <h1>Jobs available</h1>
 
     @if(!empty($jobs))
@@ -19,4 +13,4 @@
     @else
         <p>No jobs found!</p>
     @endif
-@endsection
+</x-layout>
