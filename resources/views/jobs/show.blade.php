@@ -1,9 +1,10 @@
 @extends('layout')
 
 @section('title')
-    Workopia Job Listings
+    View the Job
 @endsection
 
 @section('content')
-    <h1>Welcome to Workopia!</h1>
+    <h1>Show Job {{ $id }}</h1>
 @endsection
+
