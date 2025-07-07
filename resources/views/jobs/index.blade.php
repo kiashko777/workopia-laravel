@@ -1,16 +1,14 @@
 <x-layout>
     <x-slot name="title">Jobs available</x-slot>
-    <h1>Jobs available</h1>
+    <h1 class="font-bold">Jobs available:</h1>
 
-    @if(!empty($jobs))
-        <ul>
-            @foreach($jobs as $job)
-                <li>
-                    {{ $job }}
-                </li>
-            @endforeach
-        </ul>
-    @else
-        <p>No jobs found!</p>
-    @endif
+    <ul>
+        @forelse($jobs as $job)
+            <li>
+                {{ $job->title }} - {{ $job->description }}
+            </li>
+        @empty
+            <p>No jobs found!</p>
+        @endforelse
+    </ul>
 </x-layout>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -12,13 +13,8 @@ class JobController extends Controller
      */
     public function index(): View
     {
-        $jobs = [
-          'Web Developer',
-          'Database Administrator',
-          'Software Engineer',
-          'System Analyst'
-        ];
-        return view('jobs.index', compact('jobs'));
+        $jobs = Job::all();
+        return view('jobs.index')->with('jobs', $jobs);
     }
 
     /**
@@ -64,7 +60,7 @@ class JobController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id):string
+    public function destroy(string $id): string
     {
         return "Destroy";
     }
