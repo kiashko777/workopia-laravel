@@ -4,8 +4,8 @@
 
     <ul>
         @forelse($jobs as $job)
-            <li>
-                {{ $job->title }} - {{ $job->description }}
+            <li><a href="{{ route('jobs.show', $job->id) }}">
+                    {{ $job->title }}</a> - {{ $job->description }}
             </li>
         @empty
             <p>No jobs found!</p>
