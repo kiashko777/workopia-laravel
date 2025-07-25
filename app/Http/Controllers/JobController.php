@@ -118,6 +118,7 @@ class JobController extends Controller
 
         //Check for image
         if ($request->hasFile('company_logo')) {
+
             //Delete old logo
             Storage::delete('public/logos/' . basename($job->company_logo));
 
@@ -137,8 +138,13 @@ class JobController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id): string
+    public function destroy(Job $job): RedirectResponse
     {
-        return "Destroy";
+        //If logo then delete it
+        if ($job->company_logo) {
+            Storage::delete('public/logos/' . $job->company_logo);
+        }
+        $job->delete();
+        return redirect()->route('jobs.index')->with('success', 'Job deleted successfully!');
     }
 }
