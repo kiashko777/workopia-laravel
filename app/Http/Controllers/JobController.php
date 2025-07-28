@@ -13,6 +13,9 @@ class JobController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    //@desc Show all job listings
+    //@route GET /jobs
     public function index(): View
     {
         $jobs = Job::all();
@@ -22,6 +25,8 @@ class JobController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+    //@desc Show listing create form
+    //@route GET /jobs/create
     public function create(): View
     {
         return view('jobs.create');
@@ -30,6 +35,8 @@ class JobController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    //@desc Save jobs to database
+    //@route POST /jobs
     public function store(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
@@ -76,6 +83,8 @@ class JobController extends Controller
     /**
      * Display the specified resource.
      */
+    //@desc Display a single listing
+    //@route GET /jobs/{$id}
     public function show(Job $job): View
     {
         return view('jobs.show')->with('job', $job);
@@ -84,6 +93,8 @@ class JobController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+    //@desc Show listing edit form
+    //@route GET /jobs/{$id}/edit
     public function edit(Job $job): View
     {
         return view('jobs.edit')->with('job', $job);
@@ -92,6 +103,8 @@ class JobController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    //@desc Update job listing
+    //@route PUT /jobs/{$id}
     public function update(Request $request, Job $job): string
     {
         $validatedData = $request->validate([
@@ -138,6 +151,8 @@ class JobController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+    //@desc Delete the job listing
+    //@route DELETE /jobs/{$id}
     public function destroy(Job $job): RedirectResponse
     {
         //If logo then delete it
