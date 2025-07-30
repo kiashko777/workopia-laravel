@@ -16,6 +16,17 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
+    //@desc Logout the user
+    //@route POST /logout
+
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('home')->with('success', 'You are logged out successfully!');
+    }
+
     //@desc Authenticate the user
     //@route POST /login
 

@@ -13,6 +13,7 @@
                 {{ $subheading }}
             </p>
         </div>
-        <x-button-link url="/jobs/create" icon="edit">Create Job</x-button-link>
-    </div>
+        @auth
+            <x-button-link url="/jobs/create" icon="edit">Create Job</x-button-link>
+        @endauth
 </section>
