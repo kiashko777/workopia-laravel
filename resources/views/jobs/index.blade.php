@@ -8,7 +8,8 @@
             <p>No jobs available!</p>
         @endforelse
     </div>
-    <a href="/" class="block text-center text-xl text-indigo-700">
+    {{ $jobs->links() }}
+    <a href="/" class="block mt-6 text-center text-xl text-indigo-700">
         <i class="fa fa-arrow-alt-circle-left"></i>
         Home page
     </a>
