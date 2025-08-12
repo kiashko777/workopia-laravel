@@ -4,7 +4,8 @@
     'value' => '',
     'label' => null,
     'type' => 'text',
-    'placeholder' => ''
+    'placeholder' => '',
+    'required' => false,
 ])
 
 <div class="mb-4">
@@ -21,7 +22,7 @@
                     border-red-500
                     @enderror"
         placeholder="{{ $placeholder }}"
-        value="{{ old($name, $value) }}"/>
+        value="{{ old($name, $value) }}" {{ $required ? 'required' : '' }}/>
     @error($name)
     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
     @enderror
