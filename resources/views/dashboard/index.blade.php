@@ -32,9 +32,9 @@
                 My Job Listings
             </h3>
             @forelse($jobs as $job)
-                <div class="flex justify-between items-center border-b-2 py-2 border-gray-200">
+                <div class="flex justify-between items-center py-2 border-gray-200">
                     <div>
-                        <h3 class="text-xl font-semibold">{{ $job->title }}</h3>
+                        <h3 class="text-xl font-semibold mt-2">{{ $job->title }}</h3>
                         <p class="text-gray-700">{{ $job->job_type }}</p>
                         <p class="text-gray-700">Created: {{ $job->created_at }}</p>
                     </div>
@@ -55,6 +55,51 @@
                         </form>
                         <!-- End Delete Form -->
                     </div>
+                </div>
+
+                {{-- Applicants --}}
+                <div class="mt-4">
+                    <h4 class="text-lg font-semibold mb-2">Applicants for this job:</h4>
+                    @forelse($job->applicants as $applicant)
+                        <div class="py-2 border-b-2 border-b-gray-200">
+                            <p class="text-gray-800">
+                                <strong>Name: </strong>{{ $applicant->full_name }}
+                            </p>
+                            <p class="text-gray-800">
+                                <strong>Phone: </strong>{{ $applicant->contact_phone }}
+                            </p>
+                            <p class="text-gray-800">
+                                <strong>Email: </strong>{{ $applicant->contact_email }}
+                            </p>
+                            <p class="text-gray-800">
+                                <strong>Message: </strong>{{ $applicant->message }}
+                            </p>
+                            <p class="text-gray-800 mt-2">
+                                <a href="{{asset('storage/' . $applicant->resume_path)}}"
+                                   class="text-blue-600 hover:underline" download>
+                                    <i class="fas fa-download"></i> Download Resume
+                                </a>
+                            </p>
+
+                            {{-- Delete Applicant --}}
+                            <form method="POST" action="{{ route('applicant.destroy', $applicant->id) }}"
+                                  onsubmit="return confirm('Are you sure you want to delete this applicant?')">
+                                @csrf
+                                @method('DELETE')
+                                <button
+                                    type="submit"
+                                    class=" text-red-600 hover:text-red-700 text-sm mb-2"
+                                >
+                                    <i class="fas fa-trash"></i> Delete Applicant
+                                </button>
+                            </form>
+
+                        </div>
+
+                    @empty
+                        <p class=" text-gray-700 mb-4
+                            ">No applicants yet.</p>
+                    @endforelse
                 </div>
             @empty
                 <p class="text-center text-gray-700">You have not job listings!</p>
