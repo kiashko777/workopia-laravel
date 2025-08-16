@@ -1,66 +1,133 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Workopia Project
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Workopia is a full-featured web platform for job searching and posting vacancies, built on the Laravel framework. It provides a user-friendly interface for both job seekers and employers.
 
-## About Laravel
+## Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [About the Project](#about-the-project)
+- [Key Features](#key-features)
+- [Technology Stack](#technology-stack)
+- [Prerequisites](#prerequisites)
+- [Installation and Setup](#installation-and-setup)
+- [Database](#database)
+- [Testing](#testing)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## About the Project
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+This application is a job board. Employers can register, publish, edit, and delete their job listings. Job seekers can browse the list of vacancies, use search and filters, and apply for positions that interest them.
 
-## Learning Laravel
+## Key Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Authentication and Authorization:** User registration and login.
+- **Job Management:** CRUD (Create, Read, Update, Delete) for job listings.
+- **Dashboard:** Employers have a personal dashboard to manage their listings.
+- **Search and Filtering:** Ability to search for jobs by keywords and other parameters.
+- **Job Applications:** Job seekers can submit their resumes for vacancies.
+- **Bookmarking:** Ability to save interesting jobs for later viewing.
+- **Responsive Design:** The interface displays correctly on various devices, thanks to Tailwind CSS.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Technology Stack
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Backend
+- **PHP 8.1+**
+- **Laravel 11**
+- **Eloquent ORM**
 
-## Laravel Sponsors
+### Frontend
+- **JavaScript**
+- **Vite** — build tool
+- **Tailwind CSS** — CSS framework
+- **Blade** — Laravel's templating engine
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Database
+- **SQLite** (for local development)
+- **Laravel Migrations & Seeding**
 
-### Premium Partners
+### Tooling & Environment
+- **Composer** — PHP dependency manager
+- **NPM** — JavaScript dependency manager
+- **PHPUnit** — testing framework
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Prerequisites
 
-## Contributing
+Before you begin, ensure you have the following installed on your machine:
+- **PHP >= 8.1**
+- **Composer**
+- **Node.js and NPM**
+- **PostgreSQL**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Installation and Setup
 
-## Code of Conduct
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-username/workopia-laravel.git
+    cd workopia-laravel
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+2.  **Install PHP dependencies:**
+    ```bash
+    composer install
+    ```
 
-## Security Vulnerabilities
+3.  **Install JavaScript dependencies:**
+    ```bash
+    npm install
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+4.  **Create the environment file:**
+    Copy the `.env.example` file to `.env`.
+    ```bash
+    cp .env.example .env
+    ```
 
-## License
+5.  **Generate the application key:**
+    ```bash
+    php artisan key:generate
+    ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+6.  **Configure the database:**
+    - First, create a new database in your PostgreSQL instance (e.g., `workopia`).
+    - Then, update your `.env` file with your PostgreSQL credentials. It should look something like this:
+    ```env
+    DB_CONNECTION=pgsql
+    DB_HOST=127.0.0.1
+    DB_PORT=5432
+    DB_DATABASE=workopia
+    DB_USERNAME=your_postgres_user
+    DB_PASSWORD=your_postgres_password
+    ```
+
+7.  **Run migrations and seeders** (see the next section).
+
+8.  **Run the development server:**
+    - **Laravel (backend):**
+      ```bash
+      php artisan serve
+      ```
+    - **Vite (frontend):**
+      ```bash
+      npm run dev
+      ```
+
+After these steps, the application will be available at `http://127.0.0.1:8000`.
+
+## Database
+
+### Migrations
+To create all the necessary tables in the database, run the command:
+```bash
+php artisan migrate
+```
+
+### Seeding
+To populate the database with test jobs and users, run the command:
+```bash
+php artisan db:seed
+```
+
+## Testing
+
+To run the test suite and ensure all application components are working correctly, use the command:
+```bash
+php artisan test
+```
